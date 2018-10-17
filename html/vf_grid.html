@@ -1,0 +1,1438 @@
+
+
+<style>
+.chart {
+
+}
+
+.main text {
+  font: 10px sans-serif;
+}
+
+.axis line, .axis path {
+  shape-rendering: crispEdges;
+  stroke: black;
+  fill: none;
+}
+
+circle {
+  fill: 'steelblack';
+}
+
+.axis .ticks line {
+    stroke: #4F4F4F;
+    stroke-width: 2px;
+}
+
+.axis .ticks line.minor{
+    stroke: #CCCCCC;
+    stroke-width:1px;
+}
+</style>
+
+<div id='examples'></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<script>
+var datam = { X: 
+   [ 112.95213192322417,
+     146.16241023476923,
+     187.11349556255962,
+     66.3874681592055,
+     159.73604237997378,
+     130.64918519858378,
+     118.12515725887565,
+     78.89929876734706,
+     180.3037616806585,
+     106.79961846561402,
+     86.26412383199319,
+     193.4043091780678,
+     165.3885580630488,
+     202.3045017091199,
+     180.65451554190102,
+     85.37664229981081,
+     137.9277953115349,
+     273.2015787009311,
+     211.4101955797343,
+     175.86806312254123,
+     183.34303647695,
+     102.0117062033811,
+     28.506538021735977,
+     212.3533485088001,
+     206.1491870817536,
+     117.32051447329454,
+     123.45795129885772,
+     186.8737810771266,
+     7.67342681423159,
+     172.78964522049893,
+     129.9025901775513,
+     146.31682415606875,
+     122.73728217440484,
+     222.41586979243556,
+     118.42005604665229,
+     189.54826224496495,
+     146.65063114904734,
+     78.46546063483403,
+     130.4489921901109,
+     206.29501857717423,
+     131.76845367023517,
+     172.6623199043188,
+     46.93984353451256,
+     218.49677868016232,
+     96.20063050667254,
+     258.0666090736458,
+     154.49174833604832,
+     235.0171666104437,
+     95.14238839759119,
+     85.29052429044319,
+     166.4946794935205,
+     225.32147599715987,
+     184.73557216286352,
+     156.92038743850475,
+     194.61903112305905,
+     60.19682710527586,
+     89.57034745299819,
+     243.2048884710404,
+     126.6130654174435,
+     96.55841311392695,
+     266.73316840251533,
+     162.69360212702213,
+     177.00282120584095,
+     157.92755086334856,
+     156.1286936388926,
+     17.008132723588375,
+     86.00778183356589,
+     142.3030882883448,
+     201.83433121684985,
+     116.63250625432843,
+     217.45360860126453,
+     127.59863001698355,
+     151.81765704673296,
+     163.53221556059304,
+     174.5468660037306,
+     208.7463205612897,
+     55.967207826344335,
+     249.92753338233462,
+     194.14758253893706,
+     201.40809459506391,
+     93.86741590671696,
+     64.68668172246004,
+     103.64520927479866,
+     272.95287352386435,
+     204.17029719168858,
+     264.1317575906385,
+     140.930854226526,
+     165.21329560531026,
+     49.30984925038321,
+     8.41836095601272,
+     85.15533083007804,
+     196.98242620099475,
+     214.61847206390107,
+     96.97229133551922,
+     171.65642423607193,
+     175.12075763917102,
+     137.6873531296804,
+     150.4242036310347,
+     138.9963114567295,
+     166.72231547161414 ],
+  Y: 
+   [ 138.7900599078735,
+     131.24021558743368,
+     105.45780670896389,
+     27.095008544260807,
+     131.6523764037068,
+     137.2705418675147,
+     119.66719355902964,
+     102.36062381164528,
+     147.9338670752226,
+     61.238597773423066,
+     82.80254654082444,
+     232.6520015187461,
+     189.25566670116206,
+     247.49729713934755,
+     112.55124063640218,
+     70.99227809179825,
+     162.56287044710996,
+     166.155593594165,
+     238.01895086081257,
+     241.43129424619286,
+     149.59535076963164,
+     99.62252485842072,
+     83.59946729754019,
+     220.16674055899676,
+     218.93518953798736,
+     125.2744880231145,
+     157.38607805299708,
+     212.96907438683297,
+     26.57515704823132,
+     142.43823586361825,
+     114.43491229425575,
+     153.8821742857265,
+     143.93733299103866,
+     244.48192100536664,
+     105.4815016116805,
+     229.02114420758846,
+     140.52907462521557,
+     132.62481465557374,
+     206.22575304465528,
+     120.33404462511778,
+     129.16197582647672,
+     175.24382153556212,
+     46.848991158369756,
+     228.60374747683665,
+     140.08120199939478,
+     232.28863899978592,
+     88.72502499762481,
+     277.3118012735033,
+     46.07829072689137,
+     98.75990677018153,
+     189.5184580244332,
+     179.59693472183014,
+     199.2007277115424,
+     151.04492917441857,
+     219.36322792744446,
+     54.95378362149938,
+     126.88854898420553,
+     167.6082648271162,
+     127.39236960910067,
+     153.62134291907876,
+     253.62189334139936,
+     175.57708761476604,
+     133.28286391379612,
+     107.78591494466582,
+     139.6354299017165,
+     90.4628909188524,
+     96.70555821719182,
+     129.72342494943757,
+     232.7141191171587,
+     162.57137122160333,
+     265.9785218955668,
+     107.90739184544641,
+     114.87083265215225,
+     139.20630455010865,
+     123.76214018243104,
+     176.05592574864997,
+     21.802107961983694,
+     202.60454557370352,
+     145.59479280907112,
+     236.34207902675897,
+     88.50561002395479,
+     64.70916307510568,
+     68.60315590991267,
+     267.0995969310581,
+     189.6443853637339,
+     211.82241905181917,
+     135.85836582258815,
+     162.8407621744062,
+     26.034111480379025,
+     80.46092342032765,
+     128.0903068204981,
+     210.64397579895368,
+     178.89993500304004,
+     104.63040737517389,
+     185.17135832680566,
+     187.165270239329,
+     202.79356260365134,
+     148.90638737760935,
+     209.65619604703082,
+     185.82591172364215 ] }
+
+var combos = [
+  // {type: 'ellipse'},
+  // {type: 'box'},
+  // {type:'kNN3'}
+  //{type: 'box_conf'},
+  // {type: 'convexHull'},
+  // {type: 'dist_max'},
+  // {type: 'dist_75'},
+  // {type: 'pairwise_dist'}
+ //   {type:'dist_line'}
+  // {type:'MST'}
+  // {type: 'proj'}
+
+]
+
+combos.forEach(function(d) {
+  display(d.type);
+});
+
+function display(type) {
+    // array for table of visualizations
+    var array = [[0.8]]
+         , extent = 300;
+         color = 'rgba(0, 0, 0, 0.14679)'
+    // transpose array before visualizing 
+    // add label
+   // d3.select('#examples').append('h2').text(type);
+    // add table
+    var table = d3.select("#examples")
+      .append("table")
+      .attr('align', 'center');
+    // add table body
+    var tbody = table.append("tbody");
+    // create a row for each object in the data
+    var rows = tbody.selectAll("tr")
+      .data(array)
+      .enter().append("tr");
+    // create a cell in each row for each column
+    var cells = rows.selectAll("td")
+      .data(function(d) { return d; })
+      .enter().append("td")
+        .attr('id', function(d,i) { return type })
+        .attr('height', Math.round(extent * 1.5) +'px')
+        .attr('align', 'center')
+       // .attr("transform" , "rotate(90,0)")
+        .html(function(d) { return type ; })
+        .each(buildvis);
+    // build visualization for each r value
+
+    function buildvis() {
+      var r = d3.select(this).data()[0]
+      // call visualization method based on visualization type
+      switch(type) {
+        case "ellipse":
+           ellipse({
+             data: datam
+            , extent: 300
+            , target: 'ellipse'
+          });
+           break;
+        case "proj":
+           proj({
+             data: datam
+            , extent: 300
+            , target: 'proj'
+          });
+           break;
+        case "box":
+          box({
+             data: datam
+            , extent: 300
+            , target: 'box'
+          });
+          break;
+        case "box_conf":
+         box_conf({
+             data: datam
+            , extent: 300
+            , target: 'box_conf'
+          });
+          
+          break;
+        case "convexHull":
+          convexHull({
+             data: datam
+            , extent: 300
+            , target: 'convexHull'
+          });
+           break;
+        case "dist_max":
+          dist_max({
+             data: datam
+            , extent: 300
+            , target: 'dist_max'
+          });
+          
+           break;
+
+        case "dist_75":
+        dist_75({
+             data: datam
+            , extent: 300
+            , target: 'dist_75'
+          });
+         break;
+
+          case "MST":
+           MST({
+             data: datam
+            , extent: 300
+            , target: 'MST'
+          });
+           break;
+
+           case "kNN3":
+           kNN3({
+             data: datam
+            , extent: 300
+            , target: 'kNN3'
+          });
+           break;
+
+           case "dist_line":
+           dist_line({
+             data: datam
+            , extent: 300
+            , target: 'dist_line'
+          });
+           break;
+          
+          case "pairwise_dist":
+           pairwise_dist({
+             data: datam
+            , extent: 300
+            , target: 'pairwise_dist'
+          });
+           break;
+
+    
+        case "default":
+          console.log('error: type not found');
+      }
+    }  
+  }
+
+function proj(params){
+      var obj = getAxes(params),
+      data = params.data,
+      c0 = 'rgb(180,180,180)',
+      c1 = 'rgb(122,181,210)',
+      c2 = 'rgb(17,65,118)';
+
+        (obj.g).append('line')
+            .attr('x1', obj.x(0))
+            .attr('y1', obj.y(-110))
+            .attr('x2', obj.x(410))
+            .attr('y2', obj.y(300))
+            .attr('stroke', c0)
+            .attr('stroke-width', 2)
+            .style('fill', c0)  ;
+
+        (obj.g).append('line')
+            .attr('x1', obj.x(0))
+            .attr('y1', obj.y(570))
+            .attr('x2', obj.x(570))
+            .attr('y2', obj.y(0))
+            .attr('stroke', c0)
+            .attr('stroke-width', 2)
+            .style('fill', c0);
+
+      data.X.forEach(function(x1, i){
+         var c = x1 - data.Y[i];
+          (obj.g).append('line')
+            .attr('x1', obj.x(x1))
+            .attr('y1', obj.y(data.Y[i]))
+            .attr('x2', obj.x((c + 570) / 2))
+            .attr('y2', obj.y((570 - c) / 2))
+            .attr('stroke', c2)
+            .attr('stroke-width', 0.5)
+            .style('fill', c2);
+            // .style('opacity', '0.5');
+          
+          (obj.g).append('circle')
+            .attr('cx', obj.x((c + 570) / 2))
+            .attr('cy', obj.y((570 - c) / 2)) 
+            .attr('r', '5') 
+            .style('fill', c2)
+            // .attr('stroke', 'white')
+            // .attr('stroke-width', 1)
+            .style('opacity', '0.3');
+        
+    });
+    data.X.forEach(function(x1, i){
+         var c = data.Y[i] + x1;
+          (obj.g).append('line')
+            .attr('x1', obj.x(x1))
+            .attr('y1', obj.y(data.Y[i]))
+            .attr('x2', obj.x((c + 110) / 2))
+            .attr('y2', obj.y((c - 110) / 2))
+            .attr('stroke', c1)
+            .attr('stroke-width', 0.5)
+            .style('fill', c1) ;
+
+           (obj.g).append('circle')
+            .attr('cx', obj.x((c + 110) / 2))
+            .attr('cy', obj.y((c - 110) / 2))
+            .attr('r', 5)
+            .style('fill', c1)
+            // .attr('stroke', 'white')
+            // .attr('stroke-width', 1)
+            .style('opacity', '0.3');
+        
+    });
+
+ 
+
+     getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function dist_line(params){
+      var obj = getAxes(params),
+      data = params.data,
+      c0 = 'rgb(120,120,120)',
+      c1 = 'rgb(122,181,210)',
+      c2 = 'rgb(17,65,118)';
+
+
+        (obj.g).append('line')
+            .attr('x1', obj.x(0))
+            .attr('y1', obj.y(0))
+            .attr('x2', obj.x(300))
+            .attr('y2', obj.y(300))
+            .attr('stroke', c0)
+            .attr('stroke-width', 2)
+            .style('fill', c0)  
+
+      
+    data.X.forEach(function(x1, i){
+         var c = data.Y[i] + x1;
+          (obj.g).append('line')
+            .attr('x1', obj.x(x1))
+            .attr('y1', obj.y(data.Y[i]))
+            .attr('x2', obj.x(c / 2))
+            .attr('y2', obj.y(c / 2))
+            .attr('stroke', function(d){
+                if(x1 - data.Y[i] < 0)
+                    return c1
+                else
+                    return c2
+            })
+            .attr('stroke-width', 1.5)
+            .style('fill', function(d){
+                if(x1 - data.Y[i] < 0)
+                    return c1
+                else
+                    return c2
+            })  ;
+        
+    });
+
+     getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function kNN3(params){
+
+    var obj = getAxes(params),
+      data = params.data,
+      c0 = 'rgb(0,0,0)',
+      c1 = '#009ed2',
+      c2 = '#f3b800',
+      tmp = []
+
+      for(var i = 0; i < 100; i++){
+          tmp.push(0)
+      }
+      
+    data.X.forEach(function(x1, i){
+      var distArr = [];
+        data.X.forEach(function(x2, j){
+             if(i != j){
+                var e = (x1 - x2) * (x1 - x2) + (data.Y[i] -  data.Y[j]) * (data.Y[i] -  data.Y[j]);
+                distArr.push({'u': i, 'v' : j, 'e': Math.sqrt(e), 'uc': {'x':data.X[i], 'y':data.Y[i]}, 'vc': {'x':data.X[j], 'y' : data.Y[j]}});
+             }
+        });
+
+        distArr.sort(function(a, b) {
+            return a.e - b.e;
+        });
+
+        var knn3 = distArr.slice(0, 3)
+
+
+         knn3.forEach(function(p){
+            // if(tmp[p.u] < 1 || tmp[p.v] < 1){
+            // tmp[p.u]++;
+            // tmp[p.v]++;
+            (obj.g).append('line')
+            .attr('x1', obj.x(p.uc.x))
+            .attr('y1', obj.y(p.uc.y))
+            .attr('x2', obj.x(p.vc.x))
+            .attr('y2', obj.y(p.vc.y))
+            .attr('stroke', c0)
+            .attr('stroke-width', 1.5)
+            .style('fill', c0)
+             .style('opacity', 0.4)  
+         // }
+         })
+    });
+
+     getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function MST(params){
+    // return
+     var obj = getAxes(params),
+      data = params.data,
+      pairwise_dist = getPairwiseDist(data),
+         mst = getMST(pairwise_dist, data.X.length),
+         ellipseColor = 'rgba(0, 0, 0, 0.4)';
+
+         mst.forEach(function(p){
+             (obj.g).append('line')
+    .attr('x1', obj.x(p.uc.x))
+    .attr('y1', obj.y(p.uc.y))
+    .attr('x2', obj.x(p.vc.x))
+    .attr('y2', obj.y(p.vc.y))
+    .attr('stroke', ellipseColor)
+    .attr('stroke-width', 1.5)
+    .style('fill', ellipseColor)  
+
+         })
+         getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function getMST(g, k) {
+    var treeNode = [true],
+        mst = [];
+
+    for (var i = 1; i < k; i++)
+        treeNode.push(false);
+
+    while (mst.length < k - 1) {
+
+        var edgeList = g.filter(function(d, i) {
+            if ((!treeNode[d.u] && treeNode[d.v]) || (treeNode[d.u] && !treeNode[d.v])) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        if (edgeList.length > 0) {
+            edgeList = edgeList.sort(function(a, b) {
+                return a.e - b.e;
+            });
+
+            mst.push(edgeList[0]);
+
+            if (!treeNode[edgeList[0].u])
+                treeNode[edgeList[0].u] = true;
+            else if (!treeNode[edgeList[0].v])
+                treeNode[edgeList[0].v] = true;
+        }
+
+    }
+    return mst;
+}
+
+function getPairwiseDist (data){
+   var distArr = [];
+   data.X.forEach(function(x1, i){
+        data.X.forEach(function(x2, j){
+             if(i > j){
+                var e = (x1 - x2) * (x1 - x2) + (data.Y[i] -  data.Y[j]) * (data.Y[i] -  data.Y[j]);
+                distArr.push({'u': i, 'v' : j, 'e': Math.sqrt(e), 'uc': {'x':data.X[i], 'y':data.Y[i]}, 'vc': {'x':data.X[j], 'y' : data.Y[j]}});
+             }
+        });
+   });
+
+   return distArr;
+}
+
+
+
+function filterAbsData(type, per, data){
+  var center = 300 * 0.5,
+      halfband = +per / 100.0 * center,
+      ndata = {X:[], Y:[]}
+
+  if(type === 'horiz'){
+        data.Y.forEach(function(d, i){
+          if(Math.abs(d - center) <= halfband){
+            ndata.X.push(data.X[i])
+            ndata.Y.push(data.Y[i])
+          }
+        })
+  }else if(type === 'verti'){
+    data.X.forEach(function(d, i){
+          if(Math.abs(d - center) <= halfband){
+            ndata.X.push(data.X[i])
+            ndata.Y.push(data.Y[i])
+          }
+        })
+  }
+  return ndata;
+}
+
+
+function mrot(d, dg, ws) {
+    var n = d.X.length,
+        dnew = {
+            X: [],
+            Y: []
+        },
+        radians = dg * (Math.PI / 180),
+        negative = 1;
+
+    if (ws == 'counterclockwise')
+        negative = -1;
+
+    for (var i = 0; i < n; i++) {
+        var x = d.X[i] * Math.cos(radians) + negative * d.Y[i] * Math.sin(radians),
+            y = negative * (-1) * d.X[i] * Math.sin(radians) + d.Y[i] * Math.cos(radians)
+
+        dnew.X.push(x);
+        dnew.Y.push(y);
+    }
+    return dnew;
+}
+
+function dist_max(params){
+   var obj = getAxes(params),  
+        ellipseColor = 'rgba(0, 0, 0, 0.14679)',
+        n = 100,
+        data = params.data,
+        x1t = -1,
+        y1t = -1,
+        x2t = -1,
+        y2t = -1,
+        dist_t = -1;
+
+
+   var distArr = [];
+   data.X.forEach(function(x1, i){
+        data.X.forEach(function(x2, j){
+             if(i > j){
+              var e = (x1 - x2) * (x1 - x2) + (data.Y[i] -  data.Y[j]) * (data.Y[i] -  data.Y[j]);
+              if(e > dist_t){
+                dist_t = e
+                x1t = x1
+                x2t = x2
+                y1t = data.Y[i]
+                y2t = data.Y[j]
+              }
+             }
+        });
+   });
+
+    (obj.g).append('line')
+    .attr('x1', obj.x(x1t))
+    .attr('y1', obj.y(y1t))
+    .attr('x2', obj.x(x2t))
+    .attr('y2', obj.y(y2t))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1)
+    .style('fill', color)  
+
+    getDot(params.data, obj.x, obj.y, obj.g);
+
+}
+
+function pairwise_dist(params){
+   var obj = getAxes(params),  
+        ellipseColor = 'rgba(0, 0, 0, 0.14679)',
+        n = 100,
+        data = params.data,
+        x1t = -1,
+        y1t = -1,
+        x2t = -1,
+        y2t = -1,
+        dist_t = -1,
+        arr = []
+
+
+   var distArr = [];
+   data.X.forEach(function(x1, i){
+        data.X.forEach(function(x2, j){
+             if(i > j){
+              // var e = (x1 - x2) * (x1 - x2) + (data.Y[i] -  data.Y[j]) * (data.Y[i] -  data.Y[j]);
+              // if(e > dist_t){
+                // dist_t = e
+                x1t = x1
+                x2t = x2
+                y1t = data.Y[i]
+                y2t = data.Y[j]
+                arr.push({"x1": x1, "x2": x2, "y1": data.Y[i], "y2": data.Y[j]})
+              // }
+             }
+        });
+   });
+console.log(arr);
+    (obj.g).selectAll(".pairwiseline")
+    .data(arr)
+     .enter()
+    .append('line')
+    .attr('x1', (function(d){return obj.x(d.x1)}))
+    .attr('y1', (function(d){return obj.y(d.y1)}))
+    .attr('x2', (function(d){return obj.x(d.x2)}))
+    .attr('y2', (function(d){return obj.y(d.y2)}))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1)
+    // .style('fill', color)  
+    .style('fill', ellipseColor)  
+    .style('opacity', '0.01')  
+
+    getDot(params.data, obj.x, obj.y, obj.g);
+
+}
+
+function dist_75(params){
+   var obj = getAxes(params),  
+        ellipseColor = 'rgba(0, 0, 0, 0.14679)',
+        n = 100,
+        data = params.data
+
+   var distArr = [];
+   data.X.forEach(function(x1, i){
+        data.X.forEach(function(x2, j){
+             if(i > j){
+              var e = (x1 - x2) * (x1 - x2) + (data.Y[i] -  data.Y[j]) * (data.Y[i] -  data.Y[j]);
+              distArr.push({'u':[x1,data.Y[i]] , 'v':[x2, data.Y[j]], 'e' : e})
+             }
+        });
+   });
+   
+ distArr = distArr.sort(function (a, b) {
+  if (a.e > b.e) {
+    return 1;
+  }
+  if (a.e < b.e) {
+    return -1;
+  }
+  // a must be equal to b
+    return 0;
+});
+
+   var  per75 = Math.round(0.75 * distArr.length)
+        x1t = distArr[per75].u[0],
+        y1t =  distArr[per75].u[1],
+        x2t =  distArr[per75].v[0],
+        y2t =  distArr[per75].v[1],
+
+    (obj.g).append('line')
+    .attr('x1', obj.x(x1t))
+    .attr('y1', obj.y(y1t))
+    .attr('x2', obj.x(x2t))
+    .attr('y2', obj.y(y2t))
+    .attr('stroke', 'black')
+    .attr('stroke-width', 1)
+    .style('fill', color)  
+
+    getDot(params.data, obj.x, obj.y, obj.g);
+
+}
+
+function box_conf(params){
+     var obj = getAxes(params),
+         ellipseColor = 'rgba(0, 0, 0, 0.14679)',
+        n = 100,
+        dnew = mrot(params.data, 45, 'clockwise'),
+        xmean = d3.mean(dnew.X),
+        ymean = d3.mean(dnew.Y),
+        xsd = Math.sqrt(d3.variance(dnew.X)),
+        ysd = Math.sqrt(d3.variance(dnew.Y)),
+        sqrtn = Math.sqrt(1 + 1/n),
+        xmax = d3.max(dnew.X),
+        xmin = d3.min(dnew.X),
+        ymax = d3.max(dnew.Y),
+        ymin = d3.min(dnew.Y),
+        w1 = (xmax - xmin),
+        h1 = (ymax - ymin),
+        rs = {'box_conf_perp': 1.984217 * 2 * ysd * 100 / 99 / sqrtn,
+        'box_conf_para':  1.984217 * 2 * xsd * 100 / 99 / sqrtn ,
+        'box_conf_area': 4 * xsd / sqrtn * 1.96 * ysd / sqrtn * 1.96,
+        'box_conf_ratio': ysd / xsd,
+        'box_conf_ratio_reverse': xsd / ysd}
+
+        var w = rs.box_conf_para
+        var h = rs.box_conf_perp
+
+        var g = obj.g
+      
+        g.append('rect')    
+        .attr('transform', 'translate(0, 300) rotate(-45)') 
+        .attr('x', xmean - w / 2.0)
+        .attr('y', -1 * (ymean + h / 2.0))
+        .attr('width', w)
+        .attr('height', h)
+        .attr('stroke', 'black')
+        .attr('stroke-width', 1)
+        .style('fill', ellipseColor)  
+         
+        getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function convexHull(params){
+     var obj = getAxes(params);
+     var hull = getconvexHull(params.data); // return [[x, y],[x, y]]
+            drawContourCurve(hull, obj.g, obj.x, obj.y, obj.style, 'linear-closed');
+            getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function drawContourCurve(points, g, x, y, style, shape_model) {
+        var s;
+        var lineFunction = d3.svg.line()
+            .x(function(d, i) {
+                return x(points.X[i]);
+            })
+            .y(function(d, i) {
+                return y(points.Y[i]);
+            })
+            .interpolate(shape_model); // cardinal-closed, monotone, linear
+
+        g.append("path")
+            .attr("d", lineFunction(points.X))
+            .attr("stroke", 'none')
+            .attr("stroke-width", 1)
+            .style("fill", color);
+    }
+
+
+function box(params) {
+
+   var obj = getAxes(params);
+       
+    // first rotate all points
+    var n = 100,
+        ellipseColor = 'rgba(0, 0, 0, 0.14679)',
+        dnew = mrot(params.data, 45, 'clockwise'),
+        xmax = d3.max(dnew.X),
+        xmin = d3.min(dnew.X),
+        ymax = d3.max(dnew.Y),
+        ymin = d3.min(dnew.Y),
+        w = (xmax - xmin),
+        h = (ymax - ymin),
+        xmean = d3.mean(dnew.X),
+        ymean = d3.mean(dnew.Y),
+        // rb = mrot({X:[xmin, xmin, xmax, xmax], Y:[ymin, ymax, ymax, ymin]}, 45, 'counterclockwise')
+        g = obj.g
+    
+       g.append('rect')
+        .attr('transform', 'translate(0, 300) rotate(-45)') 
+        .attr('x', xmin)
+        .attr('y', -1 * ymax)
+        .attr('width', w)
+        .attr('height', h)
+        .attr('stroke', 'black')
+        .attr('stroke-width', 1)
+        .style('fill', ellipseColor)  
+         
+        getDot(params.data, obj.x, obj.y, obj.g);
+  }
+
+
+
+/*
+ * code from wikibooks
+ * http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain
+ */
+ 
+function cross(o, a, b) {
+   return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+}
+ 
+/**
+ * array = {X:[], Y:[]}
+ * points An array of [X, Y] coordinates
+ */
+function getconvexHull(array) {
+   
+   var points = [];
+      array.X.forEach(function(d, i){
+          points.push([d, array.Y[i]]);
+      });
+
+   points.sort(function(a, b) {
+      return a[0] == b[0] ? a[1] - b[1] : a[0] - b[0];
+   });
+ 
+   var lower = [];
+   for (var i = 0; i < points.length; i++) {
+      while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], points[i]) <= 0) {
+         lower.pop();
+      }
+      lower.push(points[i]);
+   }
+ 
+   var upper = [];
+   for (var i = points.length - 1; i >= 0; i--) {
+      while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], points[i]) <= 0) {
+         upper.pop();
+      }
+      upper.push(points[i]);
+   }
+ 
+   
+   upper.pop();
+   lower.pop();
+  // lower.reverse();
+
+   var result = {X: [], Y:[]};
+   
+   upper.forEach(function(d, i){
+      result.X.push(d[0]);
+      result.Y.push(d[1]);
+   });
+
+   lower.forEach(function(d, i){
+      result.X.push(d[0]);
+      result.Y.push(d[1]);
+   });
+
+   return result;
+}
+
+
+function ellipse(params){
+       var obj =  getAxes(params);
+        ellipseColor = 'rgba(0, 0, 0, 0.14679)'
+        drawEllipse(params.data, obj.g, ellipseColor, obj.x, obj.y);    
+        getDot(params.data, obj.x, obj.y, obj.g);
+}
+
+function getDot(data, x, y, g){
+    g.selectAll('div').data(data.X).enter().append("svg:circle")
+            .attr("cx", function(d, i) {
+                return x(data.X[i]);
+            })
+            .attr("cy", function(d, i) {
+                return y(data.Y[i]);
+            })
+     
+            .attr("r", 1.5)
+}
+
+function getAxes(params){
+     var data = [],
+            extentOverall = -1,
+            margins = 40,
+            pSize = 1.5,
+            target = '',
+            extent = -1,
+            dotColor = 'black'
+
+        if (params) {
+            if (params.data)
+                data = params.data;
+            if (params.extent)
+                extent = params.extent;
+            if (params.target)
+                target = '#' + params.target;
+            if (params.pSize)
+                pSize = params.pSize;
+            if (params.margins)
+                margins = params.margins;
+            if (params.color)
+                dotColor = params.color
+        }
+
+        extentOverall = extent + margins * 2;
+
+        var width = extent,
+            height = extent,
+            margin = {
+                top: margins,
+                right: margins,
+                bottom: margins,
+                left: margins
+            };
+
+        var x = d3.scale.linear().domain([0, width]).range([0, width]);
+        var y = d3.scale.linear().domain([0, height]).range([height, 0]);
+
+        var chart = d3.select(target).append('svg:svg')
+            .attr('width', extentOverall).attr('height', extentOverall)
+            .attr('class', 'chart')
+
+        var main = chart.append('g')
+            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+            .attr('width', width).attr('height', height).attr('class', 'main')
+
+        // draw the x axis
+        var xAxis = d3.svg.axis()
+            .scale(x)
+            .tickFormat(function(d) {
+                return '';
+            })
+            .tickSize(0)
+            .orient('top');
+
+        main.append('g')
+            .attr('transform', 'translate(' + 0 + ',' + height + ')')
+            .attr('class', 'main axis date').call(xAxis);
+
+        // draw the y axis
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .tickFormat(function(d) {
+                return '';
+            })
+            .tickSize(0)
+            .orient('right');
+
+        main.append('g')
+            .attr('class', 'main axis date').call(yAxis);
+
+        var g = main.append("svg:g");
+
+        return {'x' : x, 'y': y, 'g': g}
+}
+
+function drawEllipse(data, g, c, x, y) {
+        var avgX = d3.mean(data.X),
+            avgY = d3.mean(data.Y),
+            sdX = sd(data.X),
+            sdY = sd(data.Y),
+            r = corr(data.X, data.Y),
+            N = data.X.length,
+            A = sdY * sdY,
+            B = -1 * r * sdY * sdX,
+            C = sdX * sdX,
+            alpha = 0.05,
+            D = (N + 1) * 2 * (N - 1) / (N * (N - 2)) * sdX * sdX * sdY * sdY * (1 - r * r) * Fdistribution(2, N - 2, alpha),
+            a = Math.sqrt(2 * D / (A + C - Math.sqrt((A - C) * (A - C) + 4 * B * B))),
+            b = Math.sqrt(2 * D / (A + C + Math.sqrt((A - C) * (A - C) + 4 * B * B))),
+            angle = degrees(Math.atan(2 * B / (A - C - Math.sqrt((A - C) * (A - C) + 4 * B * B))));
+
+            angle = angle > 0 ? -1 * angle : angle;
+
+
+        g.append('svg:ellipse')
+            .attr('transform', 'translate(' + x(avgX) + ',' + y(avgY) + ')' + 'rotate(' + angle + ')')
+            .attr('cx', 0)
+            .attr('cy', 0)
+            .attr('rx', a)
+            .attr('ry', b)
+            //.attr('stroke', c)
+            .attr('fill', c)
+
+           g.append('svg:line')
+            .attr('transform', 'translate(' + x(avgX) + ',' + y(avgY) + ')' + 'rotate(' + angle + ')')
+            .attr('x1', a)
+            .attr('y1', 0)
+            .attr('x2', -1 * a)
+            .attr('y2', 0)
+            .attr('stroke', 'black')
+            .attr('stroke-width', 1)
+            .style('fill', 'black')
+
+          g.append('svg:line')
+            .attr('transform', 'translate(' + x(avgX) + ',' + y(avgY) + ')' + 'rotate(' + angle + ')')
+            .attr('x1', 0)
+            .attr('y1', b)
+            .attr('x2', 0)
+            .attr('y2', -1 * b)
+            .attr('stroke', 'black')
+            .attr('stroke-width', 1)
+            .style('fill', 'black')
+        
+    }
+
+     function corr(x, y) {
+    var shortestArrayLength = 0;
+
+    if (x.length == y.length) {
+        shortestArrayLength = x.length;
+    } else if (x.length > y.length) {
+        shortestArrayLength = y.length;
+        console.error('x has more items in it, the last ' + (x.length - shortestArrayLength) + ' item(s) will be ignored');
+    } else {
+        shortestArrayLength = x.length;
+        console.error('y has more items in it, the last ' + (y.length - shortestArrayLength) + ' item(s) will be ignored');
+    }
+
+    var xy = [];
+    var x2 = [];
+    var y2 = [];
+
+    for (var i = 0; i < shortestArrayLength; i++) {
+        xy.push(x[i] * y[i]);
+        x2.push(x[i] * x[i]);
+        y2.push(y[i] * y[i]);
+    }
+
+    var sum_x = 0;
+    var sum_y = 0;
+    var sum_xy = 0;
+    var sum_x2 = 0;
+    var sum_y2 = 0;
+
+    for (var i = 0; i < shortestArrayLength; i++) {
+        sum_x += x[i];
+        sum_y += y[i];
+        sum_xy += xy[i];
+        sum_x2 += x2[i];
+        sum_y2 += y2[i];
+    }
+
+    var step1 = (shortestArrayLength * sum_xy) - (sum_x * sum_y);
+    var step2 = (shortestArrayLength * sum_x2) - (sum_x * sum_x);
+    var step3 = (shortestArrayLength * sum_y2) - (sum_y * sum_y);
+    var step4 = Math.sqrt(step2 * step3);
+    var answer = step1 / step4;
+
+    return answer;
+}
+function corr(x, y) {
+    var shortestArrayLength = 0;
+
+    if (x.length == y.length) {
+        shortestArrayLength = x.length;
+    } else if (x.length > y.length) {
+        shortestArrayLength = y.length;
+        console.error('x has more items in it, the last ' + (x.length - shortestArrayLength) + ' item(s) will be ignored');
+    } else {
+        shortestArrayLength = x.length;
+        console.error('y has more items in it, the last ' + (y.length - shortestArrayLength) + ' item(s) will be ignored');
+    }
+
+    var xy = [];
+    var x2 = [];
+    var y2 = [];
+
+    for (var i = 0; i < shortestArrayLength; i++) {
+        xy.push(x[i] * y[i]);
+        x2.push(x[i] * x[i]);
+        y2.push(y[i] * y[i]);
+    }
+
+    var sum_x = 0;
+    var sum_y = 0;
+    var sum_xy = 0;
+    var sum_x2 = 0;
+    var sum_y2 = 0;
+
+    for (var i = 0; i < shortestArrayLength; i++) {
+        sum_x += x[i];
+        sum_y += y[i];
+        sum_xy += xy[i];
+        sum_x2 += x2[i];
+        sum_y2 += y2[i];
+    }
+
+    var step1 = (shortestArrayLength * sum_xy) - (sum_x * sum_y);
+    var step2 = (shortestArrayLength * sum_x2) - (sum_x * sum_x);
+    var step3 = (shortestArrayLength * sum_y2) - (sum_y * sum_y);
+    var step4 = Math.sqrt(step2 * step3);
+    var answer = step1 / step4;
+
+    return answer;
+}
+
+function degrees(r){
+    return r * (180.0 / Math.PI);
+}
+
+function sd(arr) {
+  var count = arr.length;
+  var mean = statsmean(arr);
+  var squaredArr = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    squaredArr[i] = Math.pow((arr[i] - mean),2);
+  }
+
+  return Math.sqrt((1 / count) * sum(squaredArr));
+};
+
+
+function statsmean(arr){
+  var count = arr.length;
+  var s = sum(arr);
+  return s / count;
+}
+
+function sum(arr){
+  if (Object.prototype.toString.call(arr) === '[object Array]') {
+    var total = 0;
+    for (var i = 0 ; i < arr.length ; i++) {
+      if (typeof(arr[i]) === 'number') {
+        total = total + arr[i];
+      } else {
+        throw new Error('All elements in array must be numbers');
+      }
+    }
+    return total;
+  } else {
+    throw new Error('Input must be of type Array');
+  }
+}
+
+function Fdistribution(df1, df2, alpha) {
+    if (df1 === 2 && Math.abs(alpha - 0.05) < 0.001) {
+        if (df2 === 1) return 199.5;
+        if (df2 === 3) return 9.55209449592115;
+        if (df2 === 8) return 4.45897010752451;
+        if (df2 === 13) return 3.80556525297806;
+        if (df2 === 18) return 3.55455714566179;
+        if (df2 === 23) return 3.42213220786118;
+        if (df2 === 28) return 3.34038555823776;
+        if (df2 === 33) return 3.28491765103828;
+        if (df2 === 38) return 3.24481836073281;
+        if (df2 === 43) return 3.21448032788304;
+        if (df2 === 48) return 3.1907273359285;
+        if (df2 === 53) return 3.17162594803767;
+        if (df2 === 58) return 3.15593197090048;
+        if (df2 === 63) return 3.14280851707602;
+        if (df2 === 68) return 3.13167197105084;
+        if (df2 === 73) return 3.12210293198828;
+        if (df2 === 83) return 3.10650708190798;
+        if (df2 === 93) return 3.09433743329114;
+        if (df2 === 98) return 3.08920301302019;
+        if (df2 === 103) return 3.08457678488047;
+        if (df2 === 108) return 3.08038686329258;
+        if (df2 === 118) return 3.07309034116716;
+        if (df2 === 128) return 3.06695173926835;
+        if (df2 === 138) return 3.06171569977225;
+        if (df2 === 148) return 3.05719680605366;
+        if (df2 === 158) return 3.05325717244124;
+        if (df2 === 168) return 3.04979213148025;
+        if (df2 === 178) return 3.04672079916554;
+        if (df2 === 188) return 3.04397968288674;
+        if (df2 === 198) return 3.04151824568661;
+        if (df2 === 248) return 3.03221260342032;
+        if (df2 === 298) return 3.02605059790794;
+        if (df2 === 348) return 3.0216694517454;
+        if (df2 === 398) return 3.01839462340603;
+        if (df2 === 448) return 3.01585404435778;
+        if (df2 === 498) return 3.01382566895426;
+        if (df2 === 548) return 3.01216878483661;
+        if (df2 === 598) return 3.01078989752794;
+        if (df2 === 648) return 3.00962445766958;
+        if (df2 === 698) return 3.00862646426926;
+        if (df2 === 748) return 3.00776224886505;
+        if (df2 === 798) return 3.00700660230091;
+        if (df2 === 848) return 3.006340274965;
+        if (df2 === 898) return 3.00574831399008;
+        if (df2 === 948) return 3.00521892776234;
+        if (df2 === 998) return 3.00474269244188;
+    }
+
+    if (df1 === 2 && Math.abs(alpha - 0.025) < 0.001) {
+        if (df2 === 1) return 799.499999999999;
+        if (df2 === 3) return 16.0441064292772;
+        if (df2 === 8) return 6.05946743746348;
+        if (df2 === 13) return 4.96526572290434;
+        if (df2 === 18) return 4.559671712652;
+        if (df2 === 23) return 4.34920215470743;
+        if (df2 === 28) return 4.22052524212474;
+        if (df2 === 33) return 4.13376543387337;
+        if (df2 === 38) return 4.0713255756233;
+        if (df2 === 43) return 4.02424344118488;
+        if (df2 === 48) return 3.98747646283454;
+        if (df2 === 53) return 3.95797093793836;
+        if (df2 === 58) return 3.93376982467323;
+        if (df2 === 63) return 3.91356114907204;
+        if (df2 === 68) return 3.89643252950548;
+        if (df2 === 73) return 3.88172984467485;
+        if (df2 === 83) return 3.85779688936718;
+        if (df2 === 93) return 3.83914744066479;
+        if (df2 === 98) return 3.83128595596334;
+        if (df2 === 103) return 3.82420603645199;
+        if (df2 === 108) return 3.817796664;
+        if (df2 === 118) return 3.80664151458073;
+        if (df2 === 128) return 3.79726296137284;
+        if (df2 === 138) return 3.78926792125595;
+        if (df2 === 148) return 3.78237130174191;
+        if (df2 === 158) return 3.77636130136781;
+        if (df2 === 168) return 3.77107728118652;
+        if (df2 === 178) return 3.76639519677721;
+        if (df2 === 188) return 3.76221773956865;
+        if (df2 === 198) return 3.75846750225561;
+        if (df2 === 248) return 3.74429792641803;
+        if (df2 === 298) return 3.73492250491967;
+        if (df2 === 348) return 3.72826022295811;
+        if (df2 === 398) return 3.72328223277458;
+        if (df2 === 448) return 3.71942150560197;
+        if (df2 === 498) return 3.71633985621719;
+        if (df2 === 548) return 3.71382307714787;
+        if (df2 === 598) return 3.71172889619648;
+        if (df2 === 648) return 3.70995911866963;
+        if (df2 === 698) return 3.70844378485336;
+        if (df2 === 748) return 3.70713170224723;
+        if (df2 === 798) return 3.7059845480372;
+        if (df2 === 848) return 3.7049730639882;
+        if (df2 === 898) return 3.70407452600071;
+        if (df2 === 948) return 3.70327101651303;
+        if (df2 === 998) return 3.70254821749604
+    }
+
+    if (df1 === 2 && Math.abs(alpha - 0.01) < 0.001) {
+        if (df2 === 1) return 4999.49999999999;
+        if (df2 === 3) return 30.8165203504783;
+        if (df2 === 8) return 8.64911064067351;
+        if (df2 === 13) return 6.70096453588078;
+        if (df2 === 18) return 6.01290483480053;
+        if (df2 === 23) return 5.66369876809604;
+        if (df2 === 28) return 5.45293692122393;
+        if (df2 === 33) return 5.31202894968948;
+        if (df2 === 38) return 5.21122472835954;
+        if (df2 === 43) return 5.1355528658662;
+        if (df2 === 48) return 5.07666380708612;
+        if (df2 === 53) return 5.02953545470502;
+        if (df2 === 58) return 4.99096662847092;
+        if (df2 === 63) return 4.9588207386498;
+        if (df2 === 68) return 4.93161737790158;
+        if (df2 === 73) return 4.90829846585952;
+        if (df2 === 83) return 4.8704027308631;
+        if (df2 === 93) return 4.84092695866816;
+        if (df2 === 98) return 4.82851595739035;
+        if (df2 === 103) return 4.81734604619419;
+        if (df2 === 108) return 4.80723996224143;
+        if (df2 === 118) return 4.78966431351988;
+        if (df2 === 128) return 4.77490101256431;
+        if (df2 === 138) return 4.76232511760706;
+        if (df2 === 148) return 4.75148406078959;
+        if (df2 === 158) return 4.74204205574369;
+        if (df2 === 168) return 4.73374471493173;
+        if (df2 === 178) return 4.7263957955208;
+        if (df2 === 188) return 4.71984148584666;
+        if (df2 === 198) return 4.71395952617681;
+        if (df2 === 248) return 4.69175319973445;
+        if (df2 === 298) return 4.67707548842953;
+        if (df2 === 348) return 4.6666527545384;
+        if (df2 === 398) return 4.65886901898519;
+        if (df2 === 448) return 4.65283464286966;
+        if (df2 === 498) return 4.64801946629613;
+        if (df2 === 548) return 4.64408789894951;
+        if (df2 === 598) return 4.64081716273587;
+        if (df2 === 648) return 4.63805356322575;
+        if (df2 === 698) return 4.63568763780196;
+        if (df2 === 748) return 4.63363931182956;
+        if (df2 === 798) return 4.63184865658282;
+        if (df2 === 848) return 4.63026992856176;
+        if (df2 === 898) return 4.62886760690906;
+        if (df2 === 948) return 4.62761368885644;
+        if (df2 === 998) return 4.62648580065508;
+    }
+
+    if (df1 === 2 && Math.abs(alpha - 0.005) < 0.001) {
+        if (df2 === 1) return 19999.4999999999;
+        if (df2 === 3) return 49.7992784003009;
+        if (df2 === 8) return 11.0424123723456;
+        if (df2 === 13) return 8.18648856100082;
+        if (df2 === 18) return 7.2148340758897;
+        if (df2 === 23) return 6.73003091707949;
+        if (df2 === 28) return 6.44030261127836;
+        if (df2 === 33) return 6.24784747264941;
+        if (df2 === 38) return 6.11079385923848;
+        if (df2 === 43) return 6.00825938961398;
+        if (df2 === 48) return 5.92867509076462;
+        if (df2 === 53) return 5.86511798335114;
+        if (df2 === 58) return 5.81319316365198;
+        if (df2 === 63) return 5.76997702899313;
+        if (df2 === 68) return 5.7334494492039;
+        if (df2 === 73) return 5.70216995665892;
+        if (df2 === 83) return 5.65140113711592;
+        if (df2 === 93) return 5.61196732669588;
+        if (df2 === 98) return 5.59537782559629;
+        if (df2 === 103) return 5.58045458270992;
+        if (df2 === 108) return 5.56695862365429;
+        if (df2 === 118) return 5.54350116700428;
+        if (df2 === 128) return 5.52381058286753;
+        if (df2 === 138) return 5.50704709626079;
+        if (df2 === 148) return 5.49260325673207;
+        if (df2 === 158) return 5.48002880315568;
+        if (df2 === 168) return 5.46898291336462;
+        if (df2 === 178) return 5.45920286185427;
+        if (df2 === 188) return 5.45048286449208;
+        if (df2 === 198) return 5.44265944613575;
+        if (df2 === 248) return 5.41314115926286;
+        if (df2 === 298) return 5.39364584684514;
+        if (df2 === 348) return 5.37980955817035;
+        if (df2 === 398) return 5.36948061243479;
+        if (df2 === 448) return 5.36147543385388;
+        if (df2 === 498) return 5.35508913508596;
+        if (df2 === 548) return 5.34987573909774;
+        if (df2 === 598) return 5.34553930332272;
+        if (df2 === 648) return 5.34187572202479;
+        if (df2 === 698) return 5.33873966772339;
+        if (df2 === 748) return 5.3360248536497;
+        if (df2 === 798) return 5.3336517490021;
+        if (df2 === 848) return 5.3315596582343;
+        if (df2 === 898) return 5.32970145682407;
+        if (df2 === 948) return 5.32803999911826;
+        if (df2 === 998) return 5.32654560979223;
+    }
+}
+</script>
+
