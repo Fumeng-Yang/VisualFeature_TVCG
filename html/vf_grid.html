@@ -238,15 +238,15 @@ var datam = { X:
 
 var combos = [
   // {type: 'ellipse'},
-  // {type: 'box'},
+   {type: 'box'},
   // {type:'kNN3'}
   //{type: 'box_conf'},
-  // {type: 'convexHull'},
+  //{type: 'convexHull'},
   // {type: 'dist_max'},
   // {type: 'dist_75'},
   // {type: 'pairwise_dist'}
- //   {type:'dist_line'}
-  // {type:'MST'}
+  // {type:'dist_line'}
+  //{type:'MST'}
   // {type: 'proj'}
 
 ]
@@ -458,9 +458,9 @@ function proj(params){
 function dist_line(params){
       var obj = getAxes(params),
       data = params.data,
-      c0 = 'rgb(120,120,120)',
-      c1 = 'rgb(122,181,210)',
-      c2 = 'rgb(17,65,118)';
+      c0 = 'rgb(0,0,0)',
+      c1 = 'rgb(0,0,0)',
+      c2 = 'rgb(0,0,0)';
 
 
         (obj.g).append('line')
@@ -834,7 +834,7 @@ function box_conf(params){
         .attr('y', -1 * (ymean + h / 2.0))
         .attr('width', w)
         .attr('height', h)
-        .attr('stroke', 'black')
+       // .attr('stroke', 'black')
         .attr('stroke-width', 1)
         .style('fill', ellipseColor)  
          
@@ -893,8 +893,8 @@ function box(params) {
         .attr('width', w)
         .attr('height', h)
         .attr('stroke', 'black')
-        .attr('stroke-width', 1)
-        .style('fill', ellipseColor)  
+        .attr('stroke-width', 2)
+        .style('fill', "none")  
          
         getDot(params.data, obj.x, obj.y, obj.g);
   }
@@ -1082,8 +1082,9 @@ function drawEllipse(data, g, c, x, y) {
             .attr('cy', 0)
             .attr('rx', a)
             .attr('ry', b)
-            //.attr('stroke', c)
-            .attr('fill', c)
+            .attr('stroke', c)
+            .attr('stroke-width', 4)
+            .attr('fill', "white")
 
            g.append('svg:line')
             .attr('transform', 'translate(' + x(avgX) + ',' + y(avgY) + ')' + 'rotate(' + angle + ')')
@@ -1092,7 +1093,7 @@ function drawEllipse(data, g, c, x, y) {
             .attr('x2', -1 * a)
             .attr('y2', 0)
             .attr('stroke', 'black')
-            .attr('stroke-width', 1)
+            .attr('stroke-width', 5)
             .style('fill', 'black')
 
           g.append('svg:line')
@@ -1102,8 +1103,9 @@ function drawEllipse(data, g, c, x, y) {
             .attr('x2', 0)
             .attr('y2', -1 * b)
             .attr('stroke', 'black')
-            .attr('stroke-width', 1)
-            .style('fill', 'black')
+            .attr('stroke-width', 5)
+            //.attr('stroke-shape', "dashed")
+            //.style('fill', 'black')
         
     }
 
