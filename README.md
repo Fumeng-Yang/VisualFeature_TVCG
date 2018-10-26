@@ -8,7 +8,7 @@ All the figures and tables in the paper.
 
 ## html
 
-The vf_grid.html draw a few visual features by altering the option in the code.
+The vf_grid.html draws a few visual features by altering the option in the code.
 It takes a fixed dataset. 
 
 ## paper
