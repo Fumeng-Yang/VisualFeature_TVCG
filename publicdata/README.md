@@ -18,7 +18,7 @@ The columns in this file are (aka information for one judgment):
 - **answer**: the participant's answer to the judgment
 - **ellipse_major ... conf_box_ratio_reverse_base**: the computed difference in a visual feature between the two side-by-side scatterplots 
 - **visandsign**: always scatterplots-positive (to aligh with Harrison et al. 2014)
-
+- **cnvgIndex**: at which judgment the trial converged
 
 ### judgments_r.csv
 
